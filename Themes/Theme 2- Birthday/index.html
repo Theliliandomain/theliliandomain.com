@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #FFCC00; /* Yellow background */
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        .container {
+            text-align: center;
+            padding: 50px;
+            position: relative;
+        }
+        h1 {
+            color: #DA291C; /* Red color */
+            font-size: 5em;
+            text-shadow: 2px 2px 0px #FFF;
+            margin: 0;
+        }
+        p {
+            color: #FFCC00; /* Yellow text */
+            font-size: 2em;
+            margin-top: 20px;
+            text-shadow: 1px 1px 0px #DA291C;
+        }
+        .balloon {
+            position: absolute;
+            background: radial-gradient(circle, #FFCC00 30%, #DA291C 100%);
+            border-radius: 50%;
+            width: 100px;
+            height: 150px;
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+        .balloon:nth-child(1) {
+            left: 20%;
+            animation-delay: 0s;
+        }
+        .balloon:nth-child(2) {
+            left: 40%;
+            animation-delay: 0.5s;
+        }
+        .balloon:nth-child(3) {
+            left: 60%;
+            animation-delay: 1s;
+        }
+        .balloon:nth-child(4) {
+            left: 80%;
+            animation-delay: 1.5s;
+        }
+        .letter-area {
+            width: 80%;
+            height: 200px;
+            margin: 30px auto;
+            padding: 10px;
+            font-size: 1.5em;
+            border: 2px solid #DA291C; /* Red border */
+            border-radius: 10px;
+            background-color: #FFF; /* White background */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .footer {
+            margin-top: -80px;
+            text-align: center; /* Center align the footer content */
+        }
+        .logo {
+            width: 90px; /* Adjust the size as needed */
+            margin-bottom: 10px;
+        }
+        .slogan {
+            font-size: 1em; /* Corrected font-size */
+            color: #DA291C; /* Red color */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Happy Birthday!</h1>
+        <p>Celebrate with Joy!</p>
+        <div class="balloon" style="top: 100px;"></div>
+        <div class="balloon" style="top: 120px;"></div>
+        <div class="balloon" style="top: 140px;"></div>
+        <div class="balloon" style="top: 160px;"></div>
+        <textarea class="letter-area" placeholder="Write your birthday message here..."></textarea>
+    </div>
+    <div class="footer">
+        <img class="logo" src="The Lilian Domain logo.jpg" alt="Your Logo">
+        <div class="slogan"><i><b>Enamoured by the exquisite.</b></i><br>
+        Email: theliliandomain@gmail.com</div>
+    </div>
+</body>
+</html>

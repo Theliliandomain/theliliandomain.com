@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Card</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        .header {
+            width: 100%;
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        #squigglyLine {
+            width: 100%;
+            height: 100%;
+        }
+
+        .content {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        h1 {
+            font-size: 3em;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .logo {
+            width: 100px;
+            height: auto;
+        }
+
+        .slogan {
+            font-size: 1.2em;
+            margin-top: 10px;
+            color: grey;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <canvas id="squigglyLine"></canvas>
+    </div>
+
+    <div class="content">
+        <h1>Happy Birthday!</h1>
+        <p>Wishing you a wonderful day full of love and happiness.</p>
+    </div>
+
+    <div class="footer">
+        <img src="The Lilian Domain logo.jpg" alt="Logo" class="logo">
+        <p class="slogan"><i> <b> Enamoured by the exquisite. </i> </b></p> </br>
+		<p> Email: theliliandomain@gmail.com </p>
+    </div>
+
+    <script>
+        window.onload = function() {
+            const canvas = document.getElementById('squigglyLine');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = 150;
+
+            let amplitude = 30;
+            let frequency = 0.02;
+            let offset = 0;
+
+            function drawWave() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                ctx.beginPath();
+                ctx.moveTo(0, canvas.height / 2);
+
+                for (let x = 0; x < canvas.width; x++) {
+                    let y = Math.sin(x * frequency + offset) * amplitude + canvas.height / 2;
+                    ctx.lineTo(x, y);
+                }
+
+                ctx.strokeStyle = 'white';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+
+                offset += 0.05; // Animation speed
+                requestAnimationFrame(drawWave);
+            }
+
+            drawWave();
+        }
+    </script>
+</body>
+</html>

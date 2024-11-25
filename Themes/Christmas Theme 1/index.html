@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christmas Theme 1 The Lilian Domain</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: lightblue;
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+            position: relative;
+        }
+        #santaScene {
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 400px; /* Adjust size as needed */
+            animation: santaFly 5s forwards;
+        }
+        #whiteSquare {
+            display: none;
+            position: absolute;
+            top: 80%;/* Move this lower by increasing the value (adjust as needed) */
+            left: 33%;
+            transform: translateX(-60%;); /* Only center horizontally */
+            width: 500px;
+            height: auto;
+            background-color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        #merryText {
+            font-size: 36px;
+            font-weight: bold;
+            color: gold;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            opacity: 0;
+        }
+        #letter {
+            display: none;
+            font-size: 18px;
+            margin-top: 20px;
+            color: black;
+        }
+        #logo {
+            position: fixed;
+            bottom: 80px;
+            left: 20px;
+            width: 100px; /* Adjust size as needed */
+        }
+        #slogan {
+            position: fixed;
+            bottom: 30px;
+            left: 20px;
+            font-style: italic;
+            font-weight: bold;
+        }
+        #christmasTree {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            width: 100px;
+        }
+        @keyframes santaFly {
+            0% { left: -400px; }
+            100% { left: 120%; }
+        }
+        @keyframes showText {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Twinkling stars */
+        .star {
+            position: absolute;
+            background: white;
+            width: 3px;
+            height: 3px;
+            border-radius: 50%;
+            animation: twinkle 2s infinite ease-in-out;
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        /* Add stars in random positions */
+        #stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+        }
+
+        /* Play Button */
+        #playButton {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            padding: 10px 20px;
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="stars"></div>
+    
+    <img id="santaScene" src="TS.png" alt="Santa Scene" />
+    
+    <div id="whiteSquare">
+        <h1 id="merryText"></h1>
+        <p id="letter">Dear Friend,<br>Wishing you joy, love, and peace this Christmas season and always. Have a wonderful Christmas!</p>
+    </div>
+
+    <img id="logo" src="The Lilian Domain logo.jpg" alt="Logo" /> 
+    <p id="slogan">Enamoured by the exquisite </br> <font size= "2">
+					Email: theliliandomain@gmail.com </font> </p>
+	
+
+    <!-- Christmas Tree -->
+    <img id="christmasTree" src="ChristmasT.png" alt="Christmas Tree" />
+
+    <!-- Play Button -->
+    <button id="playButton">Play Christmas Jingle</button>
+
+    <audio id="jingleAudio" src="Tis.mp3"></audio>
+
+    <script>
+        window.onload = function() {
+            const santaScene = document.getElementById('santaScene');
+            const whiteSquare = document.getElementById('whiteSquare');
+            const merryText = document.getElementById('merryText');
+            const letter = document.getElementById('letter');
+            const jingleAudio = document.getElementById('jingleAudio');
+            const playButton = document.getElementById('playButton');
+
+            // Play button for jingle
+            playButton.onclick = function() {
+                jingleAudio.play();
+            };
+
+            // After Santa flies off, show the blank white square
+            setTimeout(() => {
+                santaScene.style.display = 'none';
+                whiteSquare.style.display = 'block';
+                showMerryText();
+            }, 5000); // Santa flying duration
+
+            function showMerryText() {
+                const text = "Merry Christmas";
+                let index = 0;
+
+                function typeCharacter() {
+                    if (index < text.length) {
+                        merryText.innerHTML += text[index];
+                        index++;
+                        setTimeout(typeCharacter, 300); // Adjust typing speed
+                    } else {
+                        merryText.style.animation = 'showText 1s forwards';
+                        setTimeout(() => {
+                            letter.style.display = 'block'; // Show the letter after "Merry Christmas"
+                        }, 1000); // Wait 1 second after "Merry Christmas" appears
+                    }
+                }
+
+                typeCharacter();
+            }
+
+            // Add stars to the background
+            createStars(100); // Number of stars
+
+            function createStars(numStars) {
+                const starContainer = document.getElementById('stars');
+                for (let i = 0; i < numStars; i++) {
+                    const star = document.createElement('div');
+                    star.classList.add('star');
+                    star.style.top = Math.random() * 100 + 'vh';
+                    star.style.left = Math.random() * 100 + 'vw';
+                    star.style.animationDuration = Math.random() * 3 + 2 + 's'; // Random twinkling speed
+                    starContainer.appendChild(star);
+                }
+            }
+        };
+    </script>
+</body>
+</html>
