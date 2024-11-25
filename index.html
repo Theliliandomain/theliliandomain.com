@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Lilian Domain</title>
+  <style>
+    /* General Styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: black;
+      color: silver;
+      line-height: 1.6;
+    }
+
+    header {
+      text-align: center;
+      padding: 20px;
+      background-color: #1a1a1a;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin: 0;
+    }
+
+    .slogan {
+      font-style: italic;
+      color: #c0c0c0;
+      margin-top: 5px;
+    }
+
+    main {
+      padding: 20px;
+    }
+
+    section {
+      margin-bottom: 40px;
+    }
+
+    #about p {
+      margin: 10px 0;
+    }
+
+    #portfolio {
+      text-align: center;
+    }
+
+    .card {
+      display: inline-block;
+      width: 200px;
+      margin: 10px;
+      background-color: #333;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .card img {
+      width: 100%;
+      border-radius: 5px;
+    }
+
+    .card p {
+      margin: 10px 0 0;
+      font-size: 0.9em;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      width: 300px;
+      margin: 0 auto;
+    }
+
+    form label {
+      margin: 10px 0 5px;
+    }
+
+    form input, form textarea, form button {
+      padding: 10px;
+      margin-bottom: 10px;
+      border: none;
+      border-radius: 5px;
+    }
+
+    form input, form textarea {
+      background-color: #1a1a1a;
+      color: silver;
+    }
+
+    form button {
+      background-color: silver;
+      color: black;
+      cursor: pointer;
+    }
+
+    form button:hover {
+      background-color: #c0c0c0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px;
+      background-color: #1a1a1a;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>The Lilian Domain</h1>
+    <p class="slogan">Enamoured by the exquisite</p>
+  </header>
+  
+  <main>
+    <section id="about">
+      <h2>About Us</h2>
+      <p>Welcome to The Lilian Domain, where elegance meets creativity.</p>
+      <p>We create bespoke webpage cards and invitations for students, event planners, and businesses.</p>
+      <p>Contact us at: <a href="mailto:theliliandomain@gmail.com" style="color: silver; text-decoration: underline;">theliliandomain@gmail.com</a></p>
+    </section>
+
+    <section id="portfolio">
+      <h2>Our Portfolio</h2>
+      <div class="card">
+        <img src="Sample1.png" alt="Sample Design 1">
+        <p>Sample Birthday Invite</p>
+      </div>
+      <div class="card">
+        <img src="sample2.jpg" alt="Sample Design 2">
+        <p>Sample Business Event Invite</p>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact Us</h2>
+      <form action="mailto:theliliandomain@gmail.com" method="POST" enctype="text/plain">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" rows="4" required></textarea>
+        
+        <button type="submit">Send</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2024 The Lilian Domain. All rights reserved.</p>
+  </footer>
+</body>
+</html>
