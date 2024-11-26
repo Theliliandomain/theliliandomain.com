@@ -12,6 +12,7 @@
             font-family: 'Arial', sans-serif;
             position: relative;
         }
+
         #santaScene {
             position: absolute;
             top: 20%;
@@ -20,10 +21,11 @@
             width: 400px;
             animation: santaFly 5s forwards;
         }
+
         #whiteSquare {
             display: none;
             position: absolute;
-            top: 80%; /* Adjust as needed */
+            top: 80%;
             left: 55%;
             transform: translateX(-60%);
             width: 500px;
@@ -33,6 +35,7 @@
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
+
         #merryText {
             font-size: 36px;
             font-weight: bold;
@@ -40,18 +43,21 @@
             text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
             opacity: 0;
         }
+
         #letter {
             display: none;
             font-size: 18px;
             margin-top: 20px;
             color: black;
         }
+
         #logo {
             position: fixed;
             bottom: 80px;
             left: 20px;
             width: 100px;
         }
+
         #slogan {
             position: fixed;
             bottom: 30px;
@@ -59,22 +65,24 @@
             font-style: italic;
             font-weight: bold;
         }
+
         #christmasTree {
             position: fixed;
             top: 10px;
             right: 10px;
             width: 100px;
         }
+
         @keyframes santaFly {
             0% { left: -400px; }
             100% { left: 120%; }
         }
+
         @keyframes showText {
             0% { opacity: 0; }
             100% { opacity: 1; }
         }
 
-        /* Twinkling stars */
         .star {
             position: absolute;
             background: white;
@@ -83,10 +91,12 @@
             border-radius: 50%;
             animation: twinkle 2s infinite ease-in-out;
         }
+
         @keyframes twinkle {
             0%, 100% { opacity: 0.5; }
             50% { opacity: 1; }
         }
+
         #stars {
             position: fixed;
             top: 0;
@@ -96,7 +106,6 @@
             pointer-events: none;
         }
 
-        /* Play Button */
         #playButton {
             position: fixed;
             bottom: 30px;
@@ -109,7 +118,6 @@
             cursor: pointer;
         }
 
-        /* Navigation styles */
         nav {
             position: fixed;
             top: 10px;
@@ -118,14 +126,31 @@
             padding: 10px;
             border-radius: 5px;
         }
+
         nav a {
             color: black;
             text-decoration: none;
             margin-right: 10px;
             font-weight: bold;
         }
+
         nav a:hover {
             color: darkblue;
+        }
+
+        .breadcrumbs {
+            font-size: 14px;
+            margin: 70px 20px 10px;
+            color: black;
+        }
+
+        .breadcrumbs a {
+            text-decoration: none;
+            color: black;
+        }
+
+        .breadcrumbs a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -135,6 +160,13 @@
         <a href="../../index.html">Home</a>
         <a href="../">Themes</a>
     </nav>
+
+    <!-- Breadcrumbs -->
+    <div class="breadcrumbs">
+        <a href="../../index.html">Home</a> >
+        <a href="../">Themes</a> >
+        <span>Christmas Theme 1</span>
+    </div>
 
     <div id="stars"></div>
     
@@ -148,7 +180,6 @@
     <img id="logo" src="The Lilian Domain logo.jpg" alt="Logo" /> 
     <p id="slogan">Enamoured by the exquisite <br><small>Email: theliliandomain@gmail.com</small></p>
     
-    <!-- Christmas Tree -->
     <img id="christmasTree" src="ChristmasT.png" alt="Christmas Tree" />
 
     <!-- Play Button -->
@@ -175,7 +206,7 @@
                 santaScene.style.display = 'none';
                 whiteSquare.style.display = 'block';
                 showMerryText();
-            }, 5000); // Santa flying duration
+            }, 5000);
 
             function showMerryText() {
                 const text = "Merry Christmas";
@@ -185,19 +216,18 @@
                     if (index < text.length) {
                         merryText.innerHTML += text[index];
                         index++;
-                        setTimeout(typeCharacter, 300); // Adjust typing speed
+                        setTimeout(typeCharacter, 300);
                     } else {
                         merryText.style.animation = 'showText 1s forwards';
                         setTimeout(() => {
-                            letter.style.display = 'block'; // Show the letter after "Merry Christmas"
-                        }, 1000); // Wait 1 second after "Merry Christmas" appears
+                            letter.style.display = 'block';
+                        }, 1000);
                     }
                 }
 
                 typeCharacter();
             }
 
-            // Add stars to the background
             createStars(100);
 
             function createStars(numStars) {
