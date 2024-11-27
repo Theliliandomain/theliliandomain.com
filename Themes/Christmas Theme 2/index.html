@@ -103,21 +103,38 @@
             width: 80px; /* Adjust size as needed */
         }
 
-        /* Add hover message and editable text style */
+        /* No extra blocky formatting, just simple text edit */
         .editable {
             display: inline-block;
             padding: 5px;
-            border: 1px dashed #ccc;
-            background-color: #f1f1f1;
+            border: none;
+            background-color: transparent;
             cursor: text;
-        }
-
-        .editable:hover {
-            background-color: #fff;
         }
 
         .editable:focus {
             outline: none;
+        }
+
+        .button-container {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            z-index: 10;
+        }
+
+        .button-container button {
+            background-color: #4b3d32;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            margin: 10px;
+        }
+
+        .button-container button:hover {
+            background-color: #3b2a1e;
         }
     </style>
 </head>
@@ -142,17 +159,16 @@
 
         <main>
             <section class="content">
-                <img src="ChristmasT.png" alt="Christmas Tree" class="christmas-tree"> <!-- Test image -->
-                <img id="stockImage" src="Stock.webp" width="300" height="150" alt="Stock Image"> <!-- Stock Image -->
+                <img src="ChristmasT.png" alt="Christmas Tree" class="christmas-tree">
+                <img id="stockImage" src="Stock.webp" width="300" height="150" alt="Stock Image">
                 
-                <!-- Editable Text Sections -->
-                <p class="editable" contenteditable="true" id="editableText1">[STC 2 The stock image above is merely a placeholder- replace with your picturesque individuality!]</p>
+                <p class="editable" contenteditable="true" id="editableText1">Edit here: The stock image above is merely a placeholder- replace with your picturesque individuality!</p>
 
-                <h2 class="editable" contenteditable="true" id="editableText2">Celebrate the Joy of Christmas</h2>
+                <h2 class="editable" contenteditable="true" id="editableText2">Edit here: Celebrate the Joy of Christmas</h2>
 
                 <p class="editable" contenteditable="true" id="editableText3">
-                    {STC= "Subject to change"...Incorporate your exquisite flair :)} <br>
-                    Join us for a season filled with joy, love, and holiday cheer! [STC 4]
+                    Edit here: {STC= "Subject to change"...Incorporate your exquisite flair :)} <br>
+                    Edit here: Join us for a season filled with joy, love, and holiday cheer!
                 </p>
             </section>
         </main>
@@ -163,12 +179,12 @@
             <p class="slogan"><i><b>Enamoured by the Exquisite.</b></i></p>
             <p align="right">Email: theliliandomain@gmail.com</p>
         </footer>
-    </div>
 
-    <!-- Save and Preview Buttons -->
-    <div style="position: fixed; bottom: 10px; right: 10px;">
-        <button id="saveButton" onclick="saveChanges()">Save Changes</button>
-        <button id="previewButton" onclick="previewChanges()">Preview</button>
+        <!-- Save and Preview Buttons -->
+        <div class="button-container">
+            <button id="saveButton" onclick="saveChanges()">Save Changes</button>
+            <button id="previewButton" onclick="previewChanges()">Preview</button>
+        </div>
     </div>
 
     <script>
@@ -220,8 +236,8 @@
                             .editable {
                                 display: inline-block;
                                 padding: 5px;
-                                border: 1px dashed #ccc;
-                                background-color: #f1f1f1;
+                                border: none;
+                                background-color: transparent;
                                 cursor: text;
                             }
                         </style>
