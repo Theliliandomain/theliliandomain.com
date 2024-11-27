@@ -205,6 +205,7 @@
             const headerColor = localStorage.getItem('headerColor');
             const footerColor = localStorage.getItem('footerColor');
             const bgColor = localStorage.getItem('bgColor');
+            const logoSrc = document.querySelector('.logo').src; // Get the logo source
 
             const previewWindow = window.open('', '_blank');
             previewWindow.document.write(`
@@ -240,6 +241,10 @@
                                 color: black;
                                 margin-top: 20px;
                             }
+                            .logo {
+                                max-width: 100px; /*Adjust as needed */
+                                margin-bottom: 10px;
+                        }
                         </style>
                     </head>
                     <body>
@@ -251,6 +256,7 @@
                             <h2 class="editable">${document.getElementById('editableText1').innerHTML}</h2>
                             <p class="editable">${document.getElementById('editableText2').innerHTML}</p>
                             <h2 class="editable">${document.getElementById('editableText3').innerHTML}</h2>
+                            <img src="${logoSrc}" alt="Logo" class="logo"> <!--Logo displayed here-->
                         </div>
                         <footer>
                             <p class="slogan"><i><b>Enamoured by the Exquisite.</b></i></p>
