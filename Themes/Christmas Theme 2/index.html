@@ -102,6 +102,23 @@
             right: 10px; /* Position it 10px from the right */
             width: 80px; /* Adjust size as needed */
         }
+
+        /* Add hover message and editable text style */
+        .editable {
+            display: inline-block;
+            padding: 5px;
+            border: 1px dashed #ccc;
+            background-color: #f1f1f1;
+            cursor: text;
+        }
+
+        .editable:hover {
+            background-color: #fff;
+        }
+
+        .editable:focus {
+            outline: none;
+        }
     </style>
 </head>
 
@@ -126,11 +143,17 @@
         <main>
             <section class="content">
                 <img src="ChristmasT.png" alt="Christmas Tree" class="christmas-tree"> <!-- Test image -->
-                <!--replace photo with a photo from own photo library or folder or image--> <img src="Stock.webp" width="300" height="150" alt="Stock Image"> <!--end of replacement photo must be user and beginner friendly to add new photo to replace placeholder-->
-                <p><!--editable text--> [STC 2 The stock image above is merely a placeholder- replace with your picturesque individuality!] <!--end of editable text--> </p>
-                <h2 style="margin-top: 40px;"><!--editable text--> Celebrate the Joy of Christmas <!--end of editable text--> </h2>
-                <p><!--editable text-->{STC= "Subject to change"...Incorporate your exquisite flair :)} <br> 
-                   Join us for a season filled with joy, love, and holiday cheer! [STC 4]<!--end of editable text--> </p>
+                <img id="stockImage" src="Stock.webp" width="300" height="150" alt="Stock Image"> <!-- Stock Image -->
+                
+                <!-- Editable Text Sections -->
+                <p class="editable" contenteditable="true" id="editableText1">[STC 2 The stock image above is merely a placeholder- replace with your picturesque individuality!]</p>
+
+                <h2 class="editable" contenteditable="true" id="editableText2">Celebrate the Joy of Christmas</h2>
+
+                <p class="editable" contenteditable="true" id="editableText3">
+                    {STC= "Subject to change"...Incorporate your exquisite flair :)} <br>
+                    Join us for a season filled with joy, love, and holiday cheer! [STC 4]
+                </p>
             </section>
         </main>
 
@@ -141,5 +164,80 @@
             <p align="right">Email: theliliandomain@gmail.com</p>
         </footer>
     </div>
+
+    <!-- Save and Preview Buttons -->
+    <div style="position: fixed; bottom: 10px; right: 10px;">
+        <button id="saveButton" onclick="saveChanges()">Save Changes</button>
+        <button id="previewButton" onclick="previewChanges()">Preview</button>
+    </div>
+
+    <script>
+        // Save changes to localStorage
+        function saveChanges() {
+            const editableText1 = document.getElementById('editableText1').innerHTML;
+            const editableText2 = document.getElementById('editableText2').innerHTML;
+            const editableText3 = document.getElementById('editableText3').innerHTML;
+            const stockImage = document.getElementById('stockImage').src;
+
+            // Store the content in localStorage
+            localStorage.setItem('editableText1', editableText1);
+            localStorage.setItem('editableText2', editableText2);
+            localStorage.setItem('editableText3', editableText3);
+            localStorage.setItem('stockImage', stockImage);
+
+            alert('Changes saved!');
+        }
+
+        // Preview changes by opening a new window
+        function previewChanges() {
+            const editableText1 = localStorage.getItem('editableText1');
+            const editableText2 = localStorage.getItem('editableText2');
+            const editableText3 = localStorage.getItem('editableText3');
+            const stockImage = localStorage.getItem('stockImage');
+
+            const previewWindow = window.open('', '_blank');
+            previewWindow.document.write(`
+                <html>
+                    <head>
+                        <title>Preview - Christmas Theme 2</title>
+                        <style>
+                            body {
+                                font-family: Arial, sans-serif;
+                                background-color: #f9f9f9;
+                                color: #333;
+                            }
+                            .content {
+                                text-align: center;
+                                position: relative;
+                                width: 100%;
+                            }
+                            .christmas-tree {
+                                position: absolute;
+                                top: 150px;
+                                right: 10px;
+                                width: 80px;
+                            }
+                            .editable {
+                                display: inline-block;
+                                padding: 5px;
+                                border: 1px dashed #ccc;
+                                background-color: #f1f1f1;
+                                cursor: text;
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        <div class="content">
+                            <img src="${stockImage}" alt="Stock Image" width="300" height="150">
+                            <p class="editable">${editableText1}</p>
+                            <h2 class="editable">${editableText2}</h2>
+                            <p class="editable">${editableText3}</p>
+                        </div>
+                    </body>
+                </html>
+            `);
+            previewWindow.document.close();
+        }
+    </script>
 </body>
 </html>
