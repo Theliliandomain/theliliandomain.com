@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Christmas Theme 1 - The Lilian Domain</title>
+    <title>Christmas Theme - The Lilian Domain</title>
     <style>
         body {
             margin: 0;
@@ -170,14 +170,14 @@
     <img id="christmasTree" src="ChristmasT.png" alt="Christmas Tree" />
 
     <!-- Song Button -->
-    <button id="songButton">Play Song</button>
+    <button id="songButton">Play Christmas Jingle</button>
 
     <!-- Save and Preview Buttons -->
     <button id="saveButton">Save</button>
     <button id="previewButton">Preview</button>
 
     <!-- Audio -->
-    <audio id="Tis.mp3" src="christmas_song.mp3" preload="auto"></audio>
+    <audio id="song" src="christmas_song.mp3" preload="auto"></audio>
 
     <script>
         window.onload = function() {
@@ -215,8 +215,10 @@
             songButton.onclick = function() {
                 if (song.paused) {
                     song.play();
+                    songButton.innerText = "Pause Christmas Jingle"; // Change text when song is playing
                 } else {
                     song.pause();
+                    songButton.innerText = "Play Christmas Jingle"; // Reset text when paused
                 }
             };
 
