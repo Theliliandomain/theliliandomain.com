@@ -13,12 +13,21 @@
             position: relative;
         }
 
+        #santaScene {
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 400px;
+            animation: santaFly 5s forwards;
+        }
+
         #whiteSquare {
             display: none;
             position: absolute;
-            top: 80%;
-            left: 55%;
-            transform: translateX(-60%);
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
             width: 500px;
             background-color: white;
             padding: 20px;
@@ -49,6 +58,56 @@
             opacity: 0;
         }
 
+        #logo {
+            position: fixed;
+            bottom: 80px;
+            left: 20px;
+            width: 100px;
+        }
+
+        #slogan {
+            position: fixed;
+            bottom: 30px;
+            left: 20px;
+            font-style: italic;
+            font-weight: bold;
+        }
+
+        #christmasTree {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            width: 100px;
+        }
+
+        #stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            width: 3px;
+            height: 3px;
+            border-radius: 50%;
+            animation: twinkle 2s infinite ease-in-out;
+        }
+
+        @keyframes santaFly {
+            0% { left: -400px; }
+            100% { left: 120%; }
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
         #saveButton, #previewButton {
             position: fixed;
             bottom: 30px;
@@ -69,9 +128,20 @@
         #saveButton {
             right: 150px;
         }
+
+        @keyframes showText {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
     </style>
 </head>
 <body>
+    <!-- Snow Background -->
+    <div id="stars"></div>
+
+    <!-- Santa Animation -->
+    <img id="santaScene" src="TS.png" alt="Santa Scene" />
+
     <!-- Editable Content -->
     <div id="whiteSquare">
         <h1 id="merryText" class="editable" contenteditable="true">Merry Christmas</h1>
@@ -80,20 +150,46 @@
         </p>
     </div>
 
+    <!-- Logo and Slogan -->
+    <img id="logo" src="The Lilian Domain logo.jpg" alt="Logo" />
+    <p id="slogan">Enamoured by the exquisite<br><small>Email: theliliandomain@gmail.com</small></p>
+
+    <!-- Christmas Tree -->
+    <img id="christmasTree" src="ChristmasT.png" alt="Christmas Tree" />
+
     <!-- Save and Preview Buttons -->
     <button id="saveButton">Save</button>
     <button id="previewButton">Preview</button>
 
     <script>
         window.onload = function() {
+            const santaScene = document.getElementById('santaScene');
             const whiteSquare = document.getElementById('whiteSquare');
             const merryText = document.getElementById('merryText');
             const letter = document.getElementById('letter');
             const saveButton = document.getElementById('saveButton');
             const previewButton = document.getElementById('previewButton');
 
-            // Show whiteSquare for demonstration (adjust as needed)
-            whiteSquare.style.display = 'block';
+            // Display the whiteSquare after Santa finishes flying
+            setTimeout(() => {
+                santaScene.style.display = 'none';
+                whiteSquare.style.display = 'block';
+            }, 5000);
+
+            // Create stars for snow effect
+            createStars(100);
+
+            function createStars(numStars) {
+                const starContainer = document.getElementById('stars');
+                for (let i = 0; i < numStars; i++) {
+                    const star = document.createElement('div');
+                    star.classList.add('star');
+                    star.style.top = Math.random() * 100 + 'vh';
+                    star.style.left = Math.random() * 100 + 'vw';
+                    star.style.animationDuration = Math.random() * 3 + 2 + 's';
+                    starContainer.appendChild(star);
+                }
+            }
 
             // Save the content to localStorage
             saveButton.onclick = function() {
@@ -132,6 +228,8 @@
                             }
                             h1 {
                                 color: gold;
+                                font-size: 36px;
+                                text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
                             }
                         </style>
                     </head>
