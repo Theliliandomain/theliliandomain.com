@@ -170,14 +170,14 @@
     <img id="christmasTree" src="ChristmasT.png" alt="Christmas Tree" />
 
     <!-- Song Button -->
-    <button id="playButton">Play Christmas Jingle</button>
+    <button id="songButton">Play Christmas Jingle</button>
 
     <!-- Save and Preview Buttons -->
     <button id="saveButton">Save</button>
     <button id="previewButton">Preview</button>
 
     <!-- Audio -->
-    <audio id="jingleAudio" src="Tis.mp3" preload="auto"></audio>
+    <audio id="song" src="Tis.mp3" preload="auto"></audio>
 
     <script>
         window.onload = function() {
@@ -237,7 +237,7 @@
                 const savedMerryText = merryText.innerText.trim();
                 const savedLetter = letter.innerHTML.trim();
 
-                const previewWindow = window.open('', '_blank', 'width=100%,height=100%');
+                const previewWindow = window.open('', '_blank');
                 previewWindow.document.write(`
                     <!DOCTYPE html>
                     <html lang="en">
@@ -285,11 +285,9 @@
                             <h1>${savedMerryText}</h1>
                             <p>${savedLetter}</p>
                         </div>
-                        <div id="stars"></div>
                     </body>
                     </html>
                 `);
-                previewWindow.document.close();
             };
         };
     </script>
