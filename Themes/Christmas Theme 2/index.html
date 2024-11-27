@@ -14,8 +14,8 @@
 
         body {
             font-family: Arial, sans-serif;
-            background-color: #f9f9f9; /* Light background for contrast */
-            color: #333; /* Dark text for readability */
+            background-color: #f9f9f9; /* Default background */
+            color: #333; /* Default text color */
         }
 
         .container {
@@ -25,14 +25,14 @@
         }
 
         header {
-            background-color: #4b3d32; /* Dark brown */
+            background-color: #4b3d32; /* Default color */
             color: white;
             padding: 20px;
             text-align: center;
         }
 
         nav {
-            background-color: #d3a87c; /* Soft gold for festive feel */
+            background-color: #d3a87c; /* Default color */
             padding: 10px;
         }
 
@@ -74,11 +74,11 @@
             text-align: center;
             position: relative;
             padding-bottom: 60px;
-            width: 100%; /* Ensure it takes full width */
+            width: 100%;
         }
 
         footer {
-            background-color: #4b3d32; /* Dark brown */
+            background-color: #4b3d32; /* Default color */
             color: white;
             text-align: center;
             padding: 20px;
@@ -95,39 +95,23 @@
             margin-top: 5px;
         }
 
-        /* Add styles for the Christmas tree image */
-        .christmas-tree {
-            position: absolute;
-            top: 150px; /* Position it 10px from the top */
-            right: 10px; /* Position it 10px from the right */
-            width: 80px; /* Adjust size as needed */
-        }
-
-        #stockImage {
-            width: 300px; /* Adjust the size of the image */
-            height: 150px; /* Adjust the height */
-            display: block;
-            margin: 0 auto; /* Center the image */
-        }
-
+        /* Editable text */
         .editable {
-            color: black; /* Set the text color to black */
-            margin-top: 20px; /* Add margin to position text below the image */
-            display: block;
-            width: 100%;
+            position: relative;
+            z-index: 2;
+            color: black;
+            margin-top: 20px;
         }
 
-        /* No extra blocky formatting, just simple text edit */
-        .editable {
-            display: inline-block;
+        /* Color customization */
+        .color-picker {
+            margin-top: 20px;
+        }
+
+        .color-picker input {
             padding: 5px;
-            border: none;
-            background-color: transparent;
-            cursor: text;
-        }
-
-        .editable:focus {
-            outline: none;
+            margin-right: 10px;
+            width: 100px;
         }
 
         .button-container {
@@ -155,16 +139,14 @@
 
 <body>
     <div class="container">
-        <!-- Navigation -->
         <header>
-            <h1 class="editable" contenteditable="true" id="h1.editable"><!--editable text--> Edit here: Welcome to Our Christmas Wonderland <!--end editable text--></h1>
+            <h1 contenteditable="true" id="editableHeader">Welcome to Our Christmas Wonderland</h1>
         </header>
         <nav>
             <a href="../../index.html">Home</a>
             <a href="../../Themes/">Themes</a>
         </nav>
 
-        <!-- Breadcrumbs -->
         <div class="breadcrumbs">
             <a href="../../index.html">Home</a> > 
             <a href="../../Themes/">Themes</a> > 
@@ -173,14 +155,23 @@
 
         <main>
             <section class="content">
-                <img id="stockImage" src="Stock.webp" alt="Stock Image"> 
+                <img id="stockImage" src="Stock.webp" width="300" height="150" alt="Stock Image">
                 <h2 class="editable" contenteditable="true" id="editableText1">Edit here: Celebrate the Joy of Christmas</h2>
                 <p class="editable" contenteditable="true" id="editableText2">Edit here: {STC= "Subject to change"...Incorporate your exquisite flair :) }</p>
                 <p class="editable" contenteditable="true" id="editableText3">Edit here: Join us for a season filled with joy, love, and holiday cheer!</p>
             </section>
         </main>
 
-        <!-- Footer -->
+        <!-- Color Picker -->
+        <div class="color-picker">
+            <label for="headerColor">Header Color:</label>
+            <input type="color" id="headerColor" value="#4b3d32">
+            <label for="footerColor">Footer Color:</label>
+            <input type="color" id="footerColor" value="#4b3d32">
+            <label for="bgColor">Background Color:</label>
+            <input type="color" id="bgColor" value="#f9f9f9">
+        </div>
+
         <footer>
             <img src="The Lilian Domain logo.jpg" alt="Your Logo" class="logo">
             <p class="slogan"><i><b>Enamoured by the Exquisite.</b></i></p>
@@ -195,30 +186,26 @@
     </div>
 
     <script>
-        // Save changes to localStorage
+        // Save changes including color theme to localStorage
         function saveChanges() {
-            const editableText1 = document.getElementById('editableText1').innerHTML;
-            const editableText2 = document.getElementById('editableText2').innerHTML;
-            const editableText3 = document.getElementById('editableText3').innerHTML;
-            const stockImage = document.getElementById('stockImage').src;
-            const headingText= document.querySelector('h1.editable').innerHTML; //Get the heading text
+            const headerColor = document.getElementById('headerColor').value;
+            const footerColor = document.getElementById('footerColor').value;
+            const bgColor = document.getElementById('bgColor').value;
 
-            // Store the content in localStorage
-            localStorage.setItem('editableText1', editableText1);
-            localStorage.setItem('editableText2', editableText2);
-            localStorage.setItem('editableText3', editableText3);
-            localStorage.setItem('stockImage', stockImage);
-            localStorage.setItem('h1.editable', headingText); //Save the heading text
+            // Save colors to localStorage
+            localStorage.setItem('headerColor', headerColor);
+            localStorage.setItem('footerColor', footerColor);
+            localStorage.setItem('bgColor', bgColor);
+
             alert('Changes saved!');
         }
 
-        // Preview changes by opening a new window
+        // Preview changes including color theme
         function previewChanges() {
-            const editableText1 = localStorage.getItem('editableText1');
-            const editableText2 = localStorage.getItem('editableText2');
-            const editableText3 = localStorage.getItem('editableText3');
-            const stockImage = localStorage.getItem('stockImage');
-            const headingText= localStorage.getItem('h1.editable'); //Fetch the heading text
+            const headerColor = localStorage.getItem('headerColor');
+            const footerColor = localStorage.getItem('footerColor');
+            const bgColor = localStorage.getItem('bgColor');
+
             const previewWindow = window.open('', '_blank');
             previewWindow.document.write(`
                 <html>
@@ -227,34 +214,48 @@
                         <style>
                             body {
                                 font-family: Arial, sans-serif;
-                                background-color: #f9f9f9;
+                                background-color: ${bgColor}; /* Dynamic background color */
                                 color: #333;
+                            }
+                            header {
+                                background-color: ${headerColor}; /* Dynamic header color */
+                                color: white;
+                                padding: 20px;
+                                text-align: center;
+                            }
+                            footer {
+                                background-color: ${footerColor}; /* Dynamic footer color */
+                                color: white;
+                                text-align: center;
+                                padding: 20px;
                             }
                             .content {
                                 text-align: center;
                                 position: relative;
                                 width: 100%;
                             }
-                            #stockImage {
-                                width: 300px;
-                                height: 150px;
-                                display: block;
-                                margin: 0 auto;
-                            }
                             .editable {
+                                position: relative;
+                                z-index: 2;
                                 color: black;
                                 margin-top: 20px;
                             }
                         </style>
                     </head>
                     <body>
+                        <header>
+                            <h1 class="editable">Welcome to Our Christmas Wonderland</h1>
+                        </header>
                         <div class="content">
-                            <h1 class="editable"> ${headingText}</h1> <!--Display the editable heading-->
-                            <img src="${stockImage}" alt="Stock Image">
-                            <h2 class="editable">${editableText1}</h2>
-                            <p class="editable">${editableText2}</p>
-                            <h2 class="editable">${editableText3}</h2>
+                            <img src="${document.getElementById('stockImage').src}" alt="Stock Image" width="300" height="150">
+                            <h2 class="editable">${document.getElementById('editableText1').innerHTML}</h2>
+                            <p class="editable">${document.getElementById('editableText2').innerHTML}</p>
+                            <h2 class="editable">${document.getElementById('editableText3').innerHTML}</h2>
                         </div>
+                        <footer>
+                            <p class="slogan"><i><b>Enamoured by the Exquisite.</b></i></p>
+                            <p align="right">Email: theliliandomain@gmail.com</p>
+                        </footer>
                     </body>
                 </html>
             `);
