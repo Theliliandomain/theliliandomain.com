@@ -152,6 +152,33 @@
         .breadcrumbs a:hover {
             text-decoration: underline;
         }
+
+        #editFields {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        #editFields input, #editFields textarea {
+            width: 90%;
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        #editFields button {
+            background-color: gold;
+            border: none;
+            padding: 10px 20px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        #editFields button:hover {
+            background-color: darkgoldenrod;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -174,7 +201,18 @@
     
     <div id="whiteSquare">
         <h1 id="merryText"></h1>
-        <p id="letter">Dear Friend,<br>Wishing you joy, love, and peace this Christmas season and always. Have a wonderful Christmas!</p>
+        <!-- Editable message preview -->
+        <p id="letter">
+            Dear <span id="editableName">Friend</span>,<br>
+            <span id="editableMessage">Wishing you joy, love, and peace this Christmas season and always. Have a wonderful Christmas!</span>
+        </p>
+        
+        <!-- Editable fields for input -->
+        <div id="editFields">
+            <input type="text" id="nameInput" placeholder="Enter Recipient's Name">
+            <textarea id="messageInput" placeholder="Type your Christmas message here"></textarea>
+            <button onclick="saveMessage()">Save Message</button>
+        </div>
     </div>
 
     <img id="logo" src="The Lilian Domain logo.jpg" alt="Logo" /> 
@@ -188,16 +226,20 @@
     <audio id="jingleAudio" src="Tis.mp3"></audio>
 
     <script>
-        window.onload = function() {
+        window.onload = function () {
             const santaScene = document.getElementById('santaScene');
             const whiteSquare = document.getElementById('whiteSquare');
             const merryText = document.getElementById('merryText');
             const letter = document.getElementById('letter');
             const jingleAudio = document.getElementById('jingleAudio');
             const playButton = document.getElementById('playButton');
+            const nameInput = document.getElementById('nameInput');
+            const messageInput = document.getElementById('messageInput');
+            const editableName = document.getElementById('editableName');
+            const editableMessage = document.getElementById('editableMessage');
 
             // Play button for jingle
-            playButton.onclick = function() {
+            playButton.onclick = function () {
                 jingleAudio.play();
             };
 
@@ -241,7 +283,26 @@
                     starContainer.appendChild(star);
                 }
             }
+
+            // Real-time updates
+            nameInput.addEventListener('input', () => {
+                editableName.textContent = nameInput.value || "Friend";
+            });
+
+            messageInput.addEventListener('input', () => {
+                editableMessage.textContent = messageInput.value || 
+                    "Wishing you joy, love, and peace this Christmas season and always. Have a wonderful Christmas!";
+            });
+
+            // Save message to local storage (temporary for now)
+            window.saveMessage = function () {
+                const savedName = nameInput.value || "Friend";
+                const savedMessage = messageInput.value || 
+                    "Wishing you joy, love, and peace this Christmas season and always. Have a wonderful Christmas!";
+                
+                alert(Message saved for: ${savedName}\n\n"${savedMessage}");
+            };
         };
     </script>
-</body>
+ </body>
 </html>
