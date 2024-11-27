@@ -108,7 +108,7 @@
             50% { opacity: 1; }
         }
 
-        #saveButton, #previewButton {
+        #saveButton, #previewButton, #songButton {
             position: fixed;
             bottom: 30px;
             margin-right: 10px;
@@ -127,6 +127,18 @@
 
         #saveButton {
             right: 150px;
+        }
+
+        #songButton {
+            background-color: red;
+            right: 270px;
+        }
+
+        #previewWindow {
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            background-color: lightblue;
         }
 
         @keyframes showText {
@@ -157,9 +169,15 @@
     <!-- Christmas Tree -->
     <img id="christmasTree" src="ChristmasT.png" alt="Christmas Tree" />
 
+    <!-- Song Button -->
+    <button id="songButton">Play Song</button>
+
     <!-- Save and Preview Buttons -->
     <button id="saveButton">Save</button>
     <button id="previewButton">Preview</button>
+
+    <!-- Audio -->
+    <audio id="song" src="christmas_song.mp3" preload="auto"></audio>
 
     <script>
         window.onload = function() {
@@ -169,6 +187,8 @@
             const letter = document.getElementById('letter');
             const saveButton = document.getElementById('saveButton');
             const previewButton = document.getElementById('previewButton');
+            const songButton = document.getElementById('songButton');
+            const song = document.getElementById('song');
 
             // Display the whiteSquare after Santa finishes flying
             setTimeout(() => {
@@ -191,6 +211,15 @@
                 }
             }
 
+            // Play the song
+            songButton.onclick = function() {
+                if (song.paused) {
+                    song.play();
+                } else {
+                    song.pause();
+                }
+            };
+
             // Save the content to localStorage
             saveButton.onclick = function() {
                 const savedContent = {
@@ -206,7 +235,7 @@
                 const savedMerryText = merryText.innerText.trim();
                 const savedLetter = letter.innerHTML.trim();
 
-                const previewWindow = window.open('', '_blank');
+                const previewWindow = window.open('', '_blank', 'width=100%,height=100%');
                 previewWindow.document.write(`
                     <!DOCTYPE html>
                     <html lang="en">
@@ -231,6 +260,22 @@
                                 font-size: 36px;
                                 text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
                             }
+                            #stars {
+                                position: fixed;
+                                top: 0;
+                                left: 0;
+                                width: 100vw;
+                                height: 100vh;
+                                pointer-events: none;
+                            }
+                            .star {
+                                position: absolute;
+                                background: white;
+                                width: 3px;
+                                height: 3px;
+                                border-radius: 50%;
+                                animation: twinkle 2s infinite ease-in-out;
+                            }
                         </style>
                     </head>
                     <body>
@@ -238,6 +283,7 @@
                             <h1>${savedMerryText}</h1>
                             <p>${savedLetter}</p>
                         </div>
+                        <div id="stars"></div>
                     </body>
                     </html>
                 `);
