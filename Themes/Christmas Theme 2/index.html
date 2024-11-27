@@ -72,8 +72,8 @@
 
         .content {
             text-align: center;
-            position: relative; /* Allow absolute positioning of the tree image */
-            padding-bottom: 60px; /* Add bottom padding for spacing */
+            position: relative; /* Allow absolute positioning */
+            padding-bottom: 60px;
             width: 100%; /* Ensure it takes full width */
         }
 
@@ -101,6 +101,22 @@
             top: 150px; /* Position it 10px from the top */
             right: 10px; /* Position it 10px from the right */
             width: 80px; /* Adjust size as needed */
+        }
+
+        #stockImage {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%); /* Center the image horizontally */
+            width: 300px; /* Adjust the size of the image */
+            height: 150px; /* Adjust the height */
+            z-index: 1; /* Keep the image at the bottom */
+        }
+
+        .editable {
+            position: relative;
+            z-index: 2; /* Bring the text above the image */
+            color: white; /* Set the text color to be visible on top of the image */
         }
 
         /* No extra blocky formatting, just simple text edit */
@@ -136,28 +152,6 @@
         .button-container button:hover {
             background-color: #3b2a1e;
         }
-
-        /* Hover message for stock image */
-        .stock-image-container {
-            position: relative;
-            display: inline-block;
-        }
-
-        .stock-image-container .hover-message {
-            position: absolute;
-            top: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: 5px;
-            border-radius: 5px;
-            display: none;
-        }
-
-        .stock-image-container:hover .hover-message {
-            display: block;
-        }
     </style>
 </head>
 
@@ -181,17 +175,10 @@
 
         <main>
             <section class="content">
-                <img src="ChristmasT.png" alt="Christmas Tree" class="christmas-tree">
-                
-                <!-- Stock Image with hover message -->
-                <div class="stock-image-container">
-                    <img id="stockImage" src="Stock.webp" width="300" height="150" alt="Stock Image"> 
-                    <div class="hover-message">Stock image is a placeholder</div>
-                </div>
-
-                <h2 class="editable" contenteditable="true" id="editableText1">Edit here: Celebrate the Joy of Christmas</h2> <br/>
-                <p class="editable" contenteditable="true" id="editableText2">Edit here: {STC= "Subject to change"...Incorporate your exquisite flair :)}</p><br/>
-                <p class="editable" contenteditable="true" id="editableText3">Edit here: Join us for a season filled with joy, love, and holiday cheer!</p>
+                <img id="stockImage" src="Stock.webp" width="300" height="150" alt="Stock Image">
+                <h2 class="editable" contenteditable="true" id="editableText1">Edit here: Celebrate the Joy of Christmas</h2>
+                <p class="editable" contenteditable="true" id="editableText2">Edit here: {STC= "Subject to change"...Incorporate your exquisite flair :) }</p>
+                <h2 class="editable" contenteditable="true" id="editableText3">Edit here: Join us for a season filled with joy, love, and holiday cheer!</h2>
             </section>
         </main>
 
@@ -249,27 +236,28 @@
                                 position: relative;
                                 width: 100%;
                             }
-                            .christmas-tree {
+                            #stockImage {
                                 position: absolute;
-                                top: 150px;
-                                right: 10px;
-                                width: 80px;
+                                top: 0;
+                                left: 50%;
+                                transform: translateX(-50%);
+                                width: 300px;
+                                height: 150px;
+                                z-index: 1;
                             }
                             .editable {
-                                display: inline-block;
-                                padding: 5px;
-                                border: none;
-                                background-color: transparent;
-                                cursor: text;
+                                position: relative;
+                                z-index: 2;
+                                color: white;
                             }
                         </style>
                     </head>
                     <body>
                         <div class="content">
                             <img src="${stockImage}" alt="Stock Image" width="300" height="150">
-                            <p class="editable">${editableText1}</p>
-                            <h2 class="editable">${editableText2}</h2>
-                            <p class="editable">${editableText3}</p>
+                            <h2 class="editable">${editableText1}</h2>
+                            <p class="editable">${editableText2}</p>
+                            <h2 class="editable">${editableText3}</h2>
                         </div>
                     </body>
                 </html>
