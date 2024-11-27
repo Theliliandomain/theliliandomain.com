@@ -157,7 +157,7 @@
     <div class="container">
         <!-- Navigation -->
         <header>
-            <h1><!--editable text--> Welcome to Our Christmas Wonderland <!--end editable text--></h1>
+            <h1 class="editable" contenteditable="true" id="h1.editable"><!--editable text--> Edit here: Welcome to Our Christmas Wonderland <!--end editable text--></h1>
         </header>
         <nav>
             <a href="../../index.html">Home</a>
@@ -201,13 +201,14 @@
             const editableText2 = document.getElementById('editableText2').innerHTML;
             const editableText3 = document.getElementById('editableText3').innerHTML;
             const stockImage = document.getElementById('stockImage').src;
+            const headingText= document.querySelector('h1.editable').innerHTML; //Get the heading text
 
             // Store the content in localStorage
             localStorage.setItem('editableText1', editableText1);
             localStorage.setItem('editableText2', editableText2);
             localStorage.setItem('editableText3', editableText3);
             localStorage.setItem('stockImage', stockImage);
-
+            localStorage.setItem('h1.editable', headingText); //Save the heading text
             alert('Changes saved!');
         }
 
@@ -217,7 +218,7 @@
             const editableText2 = localStorage.getItem('editableText2');
             const editableText3 = localStorage.getItem('editableText3');
             const stockImage = localStorage.getItem('stockImage');
-
+            const headingText= localStorage.getItem('h1.editable'); //Fetch the heading text
             const previewWindow = window.open('', '_blank');
             previewWindow.document.write(`
                 <html>
@@ -248,6 +249,7 @@
                     </head>
                     <body>
                         <div class="content">
+                            <h1 class="editable"> ${headingText}</h1> <!--Display the editable heading-->
                             <img src="${stockImage}" alt="Stock Image">
                             <h2 class="editable">${editableText1}</h2>
                             <p class="editable">${editableText2}</p>
