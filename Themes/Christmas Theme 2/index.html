@@ -229,9 +229,6 @@
                                 padding: 20px;
                                 text-align: center;
                             }
-                            header h1 {
-                                color: ${headerTextColor};
-                            }
                             footer {
                                 background-color: ${footerColor};
                                 color: white;
@@ -257,7 +254,7 @@
                     </head>
                     <body>
                         <header>
-                            <h1 class="editable">Welcome to Our Christmas Wonderland</h1>
+                            <h1 style="color: ${headerTextColor};">Welcome to Our Christmas Wonderland</h1>
                         </header>
                         <div class="content">
                             <img src="${document.getElementById('stockImage').src}" alt="Stock Image" width="300" height="150">
