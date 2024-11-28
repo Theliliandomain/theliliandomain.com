@@ -166,6 +166,8 @@
         <div class="color-picker">
             <label for="headerColor">Header Color:</label>
             <input type="color" id="headerColor" value="#4b3d32">
+            <label for="headerTextColor">Header Text Color:</label>
+            <input type="color" id="headerTextColor" value="#ffffff">
             <label for="footerColor">Footer Color:</label>
             <input type="color" id="footerColor" value="#4b3d32">
             <label for="bgColor">Background Color:</label>
@@ -191,11 +193,13 @@
             const headerColor = document.getElementById('headerColor').value;
             const footerColor = document.getElementById('footerColor').value;
             const bgColor = document.getElementById('bgColor').value;
+            const headerTextColor = document.getElementById('headerTextColor').value;
 
             // Save colors to localStorage
             localStorage.setItem('headerColor', headerColor);
             localStorage.setItem('footerColor', footerColor);
             localStorage.setItem('bgColor', bgColor);
+            localStorage.setItem('headerTextColor', headerTextColor);
 
             alert('Changes saved!');
         }
@@ -205,6 +209,7 @@
             const headerColor = localStorage.getItem('headerColor');
             const footerColor = localStorage.getItem('footerColor');
             const bgColor = localStorage.getItem('bgColor');
+            const headerTextColor = localStorage.getItem('headerTextColor');
             const logoSrc = document.querySelector('.logo').src; // Get the logo source
 
             const previewWindow = window.open('', '_blank');
@@ -215,20 +220,20 @@
                         <style>
                             body {
                                 font-family: Arial, sans-serif;
-                                background-color: ${bgColor}; /* Dynamic background color */
+                                background-color: ${bgColor};
                                 color: #333;
                             }
                             header {
-                                background-color: ${headerColor}; /* Dynamic header color */
-                                color: white;
+                                background-color: ${headerColor};
+                                color: ${headerTextColor};
                                 padding: 20px;
                                 text-align: center;
                             }
                             header h1 {
-                                color: white; /*Ensure the font color is white */
+                                color: ${headerTextColor};
                             }
                             footer {
-                                background-color: ${footerColor}; /* Dynamic footer color */
+                                background-color: ${footerColor};
                                 color: white;
                                 text-align: center;
                                 padding: 20px;
@@ -245,9 +250,9 @@
                                 margin-top: 20px;
                             }
                             .logo {
-                                max-width: 100px; /*Adjust as needed */
+                                max-width: 100px;
                                 margin-bottom: 10px;
-                        }
+                            }
                         </style>
                     </head>
                     <body>
@@ -258,11 +263,10 @@
                             <img src="${document.getElementById('stockImage').src}" alt="Stock Image" width="300" height="150">
                             <h2 class="editable">${document.getElementById('editableText1').innerHTML}</h2>
                             <p class="editable">${document.getElementById('editableText2').innerHTML}</p>
-                            <h2 class="editable">${document.getElementById('editableText3').innerHTML}</h2>
-                            
+                            <p class="editable">${document.getElementById('editableText3').innerHTML}</p>
                         </div>
                         <footer>
-                            <img src="${logoSrc}" alt="Logo" class="logo"> <!--Logo displayed here above the slogan-->
+                            <img src="${logoSrc}" alt="Logo" class="logo">
                             <p class="slogan"><i><b>Enamoured by the Exquisite.</b></i></p>
                             <p align="right">Email: theliliandomain@gmail.com</p>
                         </footer>
